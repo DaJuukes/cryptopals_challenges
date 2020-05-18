@@ -41,6 +41,9 @@ def binarytoascii(binary_i):
     r = re.sub("\\x00", "",ascii_text)
     return r
 
+def asciitobinary(text):
+    return "".join(f"{ord(i):08b}" for i in text)
+
 def dectoascii(dec):
     b = hextobinary(dectohex(dec))
     binary_int = int(b, 2)
