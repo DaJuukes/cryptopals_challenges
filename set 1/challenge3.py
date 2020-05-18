@@ -34,12 +34,13 @@ def crackOneChar(inputStr):
         fullcharn = fullPad(charn, len(inputstrn))
         done = binarytoascii(bin_xor(inputstrn, fullcharn))
         if (done=='err'):
-            xored.append(1000)
+            xored.append({"char": binarytoascii(charn), "val": 1000, "done": done})
         else: 
-            xored.append(aggregateDiff(done))
+            xored.append({"char": binarytoascii(charn), "val": aggregateDiff(done), "done": done})
         strs.append(done)
-    xoredn = sorted(xored)
-    return "Cracked key: " + dectoascii(xored.index(xoredn[0])) + "\nDecrypted code: " + strs[xored.index(xoredn[0])]
+    
+    xored.sort(key=lambda x: x['val'])
+    return xored[0]
     
     
 
